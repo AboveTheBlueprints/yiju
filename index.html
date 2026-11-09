@@ -285,7 +285,8 @@ const DIG = {'0':'零','1':'一','2':'二','3':'三','4':'四','5':'五','6':'�
 const story = document.getElementById('story'), inp = document.getElementById('in');
 let asked = 0, pressed = 0, echoed = 0, said = JSON.parse(localStorage.getItem('yiju_said') || '[]');
 
-function para(t, cls) { const p = document.createElement('p'); p.textContent = t; if (cls) p.className = cls + ' fade'; else p.className = 'fade'; story.appendChild(p); return p; }
+function curly(t) { let o = 0; return t.replace(/"/g, () => (o++ % 2 ? '”' : '“')); }
+function para(t, cls) { const p = document.createElement('p'); p.textContent = curly(t); if (cls) p.className = cls + ' fade'; else p.className = 'fade'; story.appendChild(p); return p; }
 function showSaid() {
   const d = document.getElementById('said');
   if (!said.length) { d.innerHTML = ''; return; }
